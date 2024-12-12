@@ -26,6 +26,7 @@ for(let i=0;i<15;i++){
     board.appendChild(t.element);
     tiles.push(t);
 }
+let endGame=true;
 const emptyTile=new tile('','tile-16',3,3);
 tiles.push(emptyTile);
 board.appendChild(emptyTile.element);
@@ -84,29 +85,32 @@ let count=0;
 const disDiv=document.getElementById('display');
 disDiv.innerHTML="Score:"+count;
 document.addEventListener('keydown',(event)=>{
-    let direction;
-    switch(event.key){
-        case 'ArrowLeft':
-            direction="Left";
-            break;
-        case 'ArrowRight':
-            direction="Right";
-            break;
-        case 'ArrowUp':
-            direction="Up";
-            break;
-        case 'ArrowDown':
-            direction="Down";
-            break;
-        default:
-            return;
-    }
-    console.log(tiles)
-    swapTile(direction);
-    count+=1
-    disDiv.innerHTML="Score:"+count;
-    if(checker()){
-        document.getElementById('winner').innerHTML="You won by "+count+" moves"; 
+    if(endGame){
+        let direction;
+        switch(event.key){
+            case 'ArrowLeft':
+                direction="Left";
+                break;
+            case 'ArrowRight':
+                direction="Right";
+                break;
+            case 'ArrowUp':
+                direction="Up";
+                break;
+            case 'ArrowDown':
+                direction="Down";
+                break;
+            default:
+                return;
+        }
+        console.log(tiles)
+        swapTile(direction);
+        count+=1
+        disDiv.innerHTML="Score:"+count;
+        if(checker()){
+            document.getElementById('winner').innerHTML="You won by "+count+" moves"; 
+            endGame=false;
+        }
     }
 });
 shuffle();
