@@ -77,6 +77,9 @@ function swapTile(direction){
         emptyTile.setPos();
     }
 }
+let count=0;
+const disDiv=document.getElementById('display');
+disDiv.innerHTML="Score:"+count;
 document.addEventListener('keydown',(event)=>{
     let direction;
     switch(event.key){
@@ -96,5 +99,7 @@ document.addEventListener('keydown',(event)=>{
             return;
     }
     swapTile(direction);
+    count+=1
+    disDiv.innerHTML="Score:"+count;
 });
 shuffle();
