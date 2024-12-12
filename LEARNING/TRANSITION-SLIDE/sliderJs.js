@@ -21,8 +21,8 @@ const board=document.getElementById('board');
 const tiles=[];
 
 for(let i=0;i<15;i++){
-    const row=Math.floor(i/4);
-    const col=i%4;
+    const col=Math.floor(i/4);
+    const row=i%4;
     const t=new tile(i+1,`tile-${i+1}`,row,col);
     board.appendChild(t.element);
     tiles.push(t);
