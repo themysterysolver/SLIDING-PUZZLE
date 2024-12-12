@@ -6,7 +6,6 @@ class tile{
         this.element.className='tile';
         this.value=val;
         this.element.textContent=this.value;
-        this.element.id=id;
         if(this.value===''){
             this.element.classList.add('empty');
         }
@@ -73,6 +72,10 @@ function swapTile(direction){
         emptyTile.x=tempX;
         emptyTile.y=tempY;
 
+        const tempValue=destTile.value;
+        destTile.value=emptyTile.value;
+        emptyTile.value=tempValue;
+
         destTile.setPos();
         emptyTile.setPos();
     }
@@ -98,8 +101,33 @@ document.addEventListener('keydown',(event)=>{
         default:
             return;
     }
+    console.log(tiles)
     swapTile(direction);
     count+=1
     disDiv.innerHTML="Score:"+count;
+    if(checker()){
+        document.getElementById('winner').innerHTML="You won by "+count+" moves"; 
+    }
 });
 shuffle();
+function checker(){
+    let arr1=[]
+    for(let i=0;i<15;i++){
+        arr1.push(tiles[i].value);
+    }
+    console.log(arr1)
+    if(emptyTile.x === 3 && emptyTile.y === 3 && isSorted(arr1)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+function isSorted(arr) {
+    for(let i = 0;i<arr.length-1;i++) {
+        if(arr[i]>arr[i+1]){
+            return false;
+        }
+    }
+    return true;
+}
