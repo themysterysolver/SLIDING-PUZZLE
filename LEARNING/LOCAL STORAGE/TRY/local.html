@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local storage check</title>
+    <style>
+        #highscore{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        #reset{
+            width:100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="highscore" onclick="changeScore()"></div>
+    <button id="reset"></button>
+    <script>
+        document.getElementById('reset').onclick=function(){
+            localStorage.clear();
+            document.getElementById('highscore').innerHTML="0";
+            console.log('reseted');
+        }
+        if(!localStorage.getItem("3")){
+            localStorage.setItem("3",100);
+        }
+        function changeScore(){
+            if(!localStorage.getItem("3")){
+                localStorage.setItem("3",0);
+            }
+            localStorage.setItem("3",parseInt(localStorage.getItem("3"))+100);
+            document.getElementById('highscore').innerHTML="";
+            document.getElementById('highscore').innerHTML=localStorage.getItem("3");
+            console.log(localStorage.getItem("3"));
+            console.log('function called');
+        }
+        document.getElementById('highscore').innerHTML=localStorage.getItem("3");
+    </script>
+</body>
+</html>
