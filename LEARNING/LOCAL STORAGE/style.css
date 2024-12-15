@@ -25,3 +25,9 @@
 #reset{
     visibility: hidden;
 }
+#topHeader{
+    display: flex;
+}
+#highScore{
+    margin-left:250px;
+}

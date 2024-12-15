@@ -144,7 +144,7 @@ function reload(){
 displayHighScore();
 function displayHighScore(){
     if(localStorage.getItem("4")){
-        document.getElementById('highScore').innerHTML="Score"+localStorage.getItem("4");
+        document.getElementById('highScore').innerHTML="Your best Score:"+localStorage.getItem("4");
     }
 }
 if(!localStorage.getItem("4")){
@@ -154,5 +154,5 @@ function setHighScore(score){
     if(score<localStorage.getItem("4")){
         localStorage.setItem("4",score);
     }
-    document.getElementById('highScore').innerHTML="Score"+localStorage.getItem("4");
+    displayHighScore();
 }
