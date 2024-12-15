@@ -84,12 +84,6 @@ function swapTile(direction){
 let count=0;
 const disDiv=document.getElementById('display');
 disDiv.innerHTML="Score:"+count;
-if(getHighScore(4)==10000){
-    document.getElementById('highScore').innerHTML=0;
-}
-else{
-    document.getElementById('highScore').innerHTML=getHighSCore(4);
-}
 document.addEventListener('keydown',(event)=>{
     if(endGame){
         let direction;
@@ -117,8 +111,7 @@ document.addEventListener('keydown',(event)=>{
             document.getElementById('winner').innerHTML="You won by "+count+" moves"; 
             endGame=false;
             document.getElementById('reset').style.visibility='visible';
-            setHighScore(4,score);
-            document.getElementById('highScore').innerHTML=getHighSCore(4);
+            setHighScore(count);
         }
     }
 });
@@ -148,13 +141,18 @@ function reload(){
     location.reload();
     console.log('button clciked!');
 }
-localStorage.setItem(4,10000);
-function setHighScore(size,score){
-    let currHighScore=getHighSCore(size);
-    if(score<=currHighScore){
-        localStorage.setItem(size,score);
+displayHighScore();
+function displayHighScore(){
+    if(localStorage.getItem("4")){
+        document.getElementById('highScore').innerHTML="Score"+localStorage.getItem("4");
     }
 }
-function getHighSCore(size){
-    return localStorage.getItem(size);
+if(!localStorage.getItem("4")){
+    localStorage.setItem("4",1000);
+}
+function setHighScore(score){
+    if(score<localStorage.getItem("4")){
+        localStorage.setItem("4",score);
+    }
+    document.getElementById('highScore').innerHTML="Score"+localStorage.getItem("4");
 }
