@@ -1,0 +1,21 @@
+body{
+    justify-content: center;
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+#box{
+    display: grid;
+    width: 30vw;
+    height: 30vh;
+    border: 2px solid steelblue;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    align-items: center;
+    gap:4%;
+}
+.tile{
+    display: flex;
+    border: 1px solid steelblue;
+}
